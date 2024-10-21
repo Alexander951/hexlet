@@ -1,0 +1,12 @@
+- hosts: server2
+
+  tasks:
+    - name: remove git
+      ansible.builtin.apt:
+        name: git
+        state: absent
+      retries: 10 #ubuntu особенность с блокировкой apt решаем попытками
+      delay: 5
+      become: true
+      become_user: root
+      become_method: sudo
